@@ -6,6 +6,7 @@ Minimal python web app
 - Simple Flask web application
 - Clean and responsive design
 - Two pages: Home and About
+- Request logging with timing and status tracking
 - Easy to extend and customize
 
 ## Requirements
@@ -35,3 +36,17 @@ The application will be available at `http://localhost:5000`
 
 - `/` - Home page
 - `/about` - About page
+
+## Request Logging
+
+The application includes automatic request logging that tracks:
+- HTTP method and path
+- Source IP address
+- Response status code
+- Request duration (in seconds)
+
+Logs are output to the console in the following format:
+```
+2025-12-30 15:11:44,316 - __main__ - INFO - Request: GET / from 127.0.0.1
+2025-12-30 15:11:44,319 - __main__ - INFO - Response: 200 for GET / - Duration: 0.002s
+```
