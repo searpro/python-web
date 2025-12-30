@@ -20,9 +20,12 @@ def before_request():
 @app.after_request
 def after_request(response):
     """Log response details and calculate request duration"""
-    if hasattr(g, 'start_time'):
-        duration = time.time() - g.start_time
+    start_time = getattr(g, 'start_time', None)
+    if start_time is not None:
+        duration = time.time() - start_time
         logger.info(f"Response: {response.status_code} for {request.method} {request.path} - Duration: {duration:.3f}s")
+    else:
+        logger.info(f"Response: {response.status_code} for {request.method} {request.path}")
     return response
 
 @app.route('/')
